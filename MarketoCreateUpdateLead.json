@@ -1,0 +1,200 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Marketo",
+    "description": "API for 272-jvs-996.mktorest.com",
+    "version": "0.0.0"
+  },
+  "host": "placeholder.mktorest.com",
+  "x-ntx-render-version": 2,
+  "x-ntx-host": "{{baseUrl}}.mktorest.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/rest/v1/leads.json": {
+      "post": {
+        "tags": [
+          "Rest"
+        ],
+        "description": "Create lead",
+        "operationId": "createLead",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Leads",
+            "in": "body",
+            "description": "Leads",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Leads"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CreateLead"
+            },
+            "examples": {
+              "application/json": {
+                "requestId": "16ff1#17e2c33c0d0",
+                "result": [
+                  {
+                    "id": 11463780,
+                    "status": "created"
+                  }
+                ],
+                "success": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Default": ["NWCapi@nintex.com"]
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Input": {
+      "description": "Model for Input",
+      "type": "object",
+      "required": [
+        "Company"
+      ],
+      "properties": {
+        "Company": {
+          "type": "string",
+          "x-example": "Nintex"
+        },
+        "Email": {
+          "type": "string",
+          "x-example": "andy.hayes2@nintex.com"
+        },
+        "FirstName": {
+          "type": "string",
+          "x-example": "Andy2"
+        },
+        "LastName": {
+          "type": "string",
+          "x-example": "Hayes"
+        },
+        "LT_utm_content__c": {
+          "type": "string",
+          "x-example": "Placeholder Campaign"
+        },
+        "miscInfoFieldTextArea": {
+          "type": "string",
+          "x-example": "blaa blaa"
+        }
+      }
+    },
+    "Leads": {
+      "description": "Model for Leads",
+      "required": [
+        "action"
+      ],
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "x-example": "createOnly",
+          "enum": [
+            "createOnly",
+            "updateOnly"
+          ]
+        },
+        "lookupField": {
+          "type": "string",
+          "x-example": "email"
+        },
+        "input": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Input"
+          }
+        }
+      }
+    },
+    "Result": {
+      "description": "Model for Result",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "11463780"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateLead": {
+      "description": "Model for CreateLead",
+      "required": [
+        "requestId"
+      ],
+      "type": "object",
+      "properties": {
+        "requestId": {
+          "type": "string",
+          "x-example": "16ff1#17e2c33c0d0"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Result"
+          }
+        },
+        "success": {
+          "type": "boolean",
+          "x-example": "true"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Default": {
+      "description": "Default authentication scheme for the API",
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://{{baseUrl}}.mktorest.com/identity/oauth/token",
+      "scopes": 
+      {"NWCapi@nintex.com": "NWCapi@nintex.com"},
+      "x-ntx-connection-properties": {
+        "type": "object",
+        "properties": {
+          "baseUrl": {
+            "type": "string",
+            "title": "Base URL",
+            "description": "Enter your base API URL for Marketo"
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Identity",
+      "description": "Operations about Identity"
+    },
+    {
+      "name": "Rest",
+      "description": "Operations about Rest"
+    }
+  ]
+}

@@ -88,9 +88,9 @@
           "type": "string",
           "x-example": "Hayes"
         },
-        "LT_utm_content__c": {
+        "utm_camapign": {
           "type": "string",
-          "x-example": "Placeholder Campaign"
+          "x-example": "0121_eSign_Global_Are-You-Paying-Too-Much_CNT"
         },
         "miscInfoFieldTextArea": {
           "type": "string",
